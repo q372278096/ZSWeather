@@ -14,6 +14,17 @@ object ZSWeatherNetwork {
 
     private val placeService = ServiceCreator.create(PlaceService::class.java)
 
+    private val weatherService = ServiceCreator.create(WeatherService::class.java)
+
+    //发起未来天气请求
+    suspend fun getDailyWeather(lng: String, lat: String) =
+        weatherService.getDailyWeather(lng, lat).await()
+
+    //发起实时天气请求
+    suspend fun getRealtimeWeather(lng: String, lat: String) =
+        weatherService.getRealtimeWeather(lng, lat).await()
+
+    //发起了城市地方网络请求
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
 
     private suspend fun <T> Call<T>.await(): T {
