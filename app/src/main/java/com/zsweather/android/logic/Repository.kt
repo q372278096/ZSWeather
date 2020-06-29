@@ -13,8 +13,8 @@ object Repository {
         val result = try {
             val placeResponse = ZSWeatherNetwork.searchPlaces(query)
             if (placeResponse.status == "ok") {
-                val place = placeResponse.place
-                Result.success(place)
+                val places = placeResponse.places
+                Result.success(places)
             }else{
                 Result.failure(RuntimeException("response status is " +
                         "${placeResponse.status}"))
