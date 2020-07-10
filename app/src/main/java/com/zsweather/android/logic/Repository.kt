@@ -2,6 +2,7 @@ package com.zsweather.android.logic
 
 import android.content.Context
 import androidx.lifecycle.liveData
+import com.zsweather.android.logic.dao.PlaceDao
 import com.zsweather.android.logic.modle.Place
 import com.zsweather.android.logic.modle.Weather
 import com.zsweather.android.logic.network.ZSWeatherNetwork
@@ -59,4 +60,10 @@ object Repository {
             }
             emit(result)
         }
+
+    fun savePlace(place: Place) = PlaceDao.savePlace(place)
+
+    fun getPlace() = PlaceDao.getPlace()
+
+    fun isPlaceSaved() = PlaceDao.isPlaceSaved()
 }
